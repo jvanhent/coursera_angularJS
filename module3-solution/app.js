@@ -29,6 +29,7 @@
 
 
         service.getMatchedMenuItems = function(searchTerm) {
+            console.log("searchTerm ", searchTerm);
             var matchFilter = function(term) {
                 return function(item) {
                     return item.description.indexOf(searchTerm) >= 0;
@@ -38,7 +39,7 @@
                     var filter = matchFilter(searchTerm);
                     console.log("all items", response.data.menu_items);
                     var matched = response.data.menu_items.filter(filter);
-                    console.log("matched items for " + searchTerm, response.data.menu_items);
+                    console.log("matched items for " + searchTerm, matched);
                     //var myRedObjects = $filter('filter')(myObjects, { color: "red" });
                 })
                 .catch(function(error) {
