@@ -18,8 +18,9 @@ input[type="text"] {
     margin-left: 10px;
 }
 
-#items {
+.items {
     float: left;
+    min-width: 80%;
 }
 
 .loader {

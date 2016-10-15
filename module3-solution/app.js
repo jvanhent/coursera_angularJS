@@ -67,14 +67,15 @@
             }
         }
 
-        MenuSearchService.$inject = ['$http', 'ApiBasePath']
+        MenuSearchService.$inject = ['$http', '$filter', 'ApiBasePath']
 
-        function MenuSearchService($http, ApiBasePath) {
+        function MenuSearchService($http, $filter, ApiBasePath) {
             var service = this;
+            var lowCase = $filter('lowercase');
 
             var filterResponse = function(searchTerm) {
                 var matchFilter = function(item) {
-                    return item.description.indexOf(searchTerm) >= 0;
+                    return lowCase(item.description).indexOf(lowCase(searchTerm)) >= 0;
                 }
 
                 return function(response) {

@@ -23,7 +23,7 @@
         <items-loader-indicator loading="narrowDown.loading"></items-loader-indicator>
         <div ng-if="narrowDown.resultText" class="error">{{narrowDown.resultText}}</div>
 
-        <div id="items">
+        <div class="items">
             <ul>
                 <li ng-repeat="item in narrowDown.items">{{item.name}}, {{item.short_name}}, {{item.description}}</li>
             </ul>
