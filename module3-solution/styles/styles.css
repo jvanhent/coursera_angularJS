@@ -1,3 +1,9 @@
+.error {
+    color: red;
+    float: left;
+    margin-left: 10px;
+}
+
 h1 {
     margin-bottom: 30px;
 }
@@ -10,6 +16,10 @@ input[type="text"] {
 .narrow-button {
     float: left;
     margin-left: 10px;
+}
+
+#items {
+    float: left;
 }
 
 .loader {

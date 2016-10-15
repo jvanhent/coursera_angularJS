@@ -4,7 +4,21 @@
         angular.module('NarrowItDownApp', [])
             .controller('NarrowItDownController', NarrowItDownController)
             .service('MenuSearchService', MenuSearchService)
-            .constant('ApiBasePath', "https://davids-restaurant.herokuapp.com/menu_items.json");
+            .constant('ApiBasePath', "https://davids-restaurant.herokuapp.com/menu_items.json")
+            .directive('itemsLoaderIndicator', ItemsLoaderIndicator);
+
+
+        function ItemsLoaderIndicator() {
+            var ddo = {
+                restrict: "E",
+                templateUrl: 'itemsLoaderIndicator.html',
+                scope: {
+                    loading: '=loading'
+                }
+            };
+
+            return ddo;
+        }
 
         NarrowItDownController.$inject = ['MenuSearchService'];
 
@@ -16,23 +30,40 @@
             menuController.resultText = "";
             menuController.loading = false;
 
-            menuController.narrowDown = function() {
+            var setResultText = function(text) {
+                menuController.loading = false;
+                menuController.resultText = text;
+            }
+
+            var startSearch = function() {
+                menuController.resultText = "";
                 menuController.loading = true;
-                var prom = MenuSearchService.getMatchedMenuItems(menuController.searchText);
-                prom.then(function(response) {
-                        console.log("narrowDown : ", response);
-                        menuController.items = response;
-                        if (!menuController.data) {
-                            menuController.resultText = "Nothing found";
-                        } else {
-                            menuController.resultText = "";
-                        }
-                        menuController.loading = false;
-                    })
-                    .catch(function(error) {
-                        console.log(error);
-                        menuController.resultText = "Error: " + error;
-                    })
+                menuController.items = [];
+            }
+
+            var setItems = function(data) {
+                menuController.items = data;
+                if (!data.length) {
+                    setResultText("Nothing found");
+                } else {
+                    setResultText("");
+                }
+            }
+
+            menuController.narrowDown = function() {
+                if (!menuController.searchText) {
+                    setResultText("Please enter search term");
+                } else {
+                    startSearch();
+                    var prom = MenuSearchService.getMatchedMenuItems(menuController.searchText);
+                    prom.then(function(response) {
+                            console.log("narrowDown : ", response);
+                            setItems(response);
+                        })
+                        .catch(function(error) {
+                            setResultText("Error: " + error);
+                        })
+                }
             }
         }
 
