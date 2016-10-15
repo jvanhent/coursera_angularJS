@@ -14,8 +14,10 @@
             menuController.searchText = "";
             menuController.items = [];
             menuController.resultText = "";
+            menuController.loading = false;
 
             menuController.narrowDown = function() {
+                menuController.loading = true;
                 var prom = MenuSearchService.getMatchedMenuItems(menuController.searchText);
                 prom.then(function(response) {
                         console.log("narrowDown : ", response);
@@ -25,6 +27,7 @@
                         } else {
                             menuController.resultText = "";
                         }
+                        menuController.loading = false;
                     })
                     .catch(function(error) {
                         console.log(error);
