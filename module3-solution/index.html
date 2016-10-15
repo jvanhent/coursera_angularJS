@@ -19,18 +19,11 @@
             <button ng-click="narrowDown.narrowDown()" class="btn btn-primary">Narrow It Down For Me!</button>
         </div>
 
-        <!-- Bonus loader (see Bonus section of the assignment) -->
         <items-loader-indicator loading="narrowDown.loading"></items-loader-indicator>
+
         <div ng-if="narrowDown.resultText" class="error">{{narrowDown.resultText}}</div>
 
-        <div class="items">
-            <ul>
-                <li ng-repeat="item in narrowDown.items">{{item.name}}, {{item.short_name}}, {{item.description}}</li>
-            </ul>
-        </div>
-
-        <!-- found-items should be implemented as a component -->
-        <found-items found-items="...." on-remove="...."></found-items>
+        <found-items found-items="narrowDown.items" on-remove="narrowDown.removeItem(idx);"></found-items>
     </div>
 
     <script src="angular.min.js"></script>

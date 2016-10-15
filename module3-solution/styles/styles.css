@@ -8,6 +8,10 @@ h1 {
     margin-bottom: 30px;
 }
 
+li {
+    margin-bottom: 3px;
+}
+
 input[type="text"] {
     width: 200px;
     float: left;
