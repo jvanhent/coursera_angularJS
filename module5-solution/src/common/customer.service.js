@@ -21,6 +21,10 @@
             return true;
         };
 
+        service.getCustomerInfo = function() {
+            return info;
+        };
+
 
     }
 

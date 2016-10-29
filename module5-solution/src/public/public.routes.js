@@ -48,6 +48,17 @@
                 controller: 'SignUpController',
                 controllerAs: 'signUpCtrl'
             })
+            .state('public.myInfo', {
+                url: '/myInfo',
+                templateUrl: 'src/public/customer/customer-info.html',
+                controller: 'CustomerInfoController',
+                controllerAs: 'customerInfoCtrl',
+                resolve: {
+                    customerInfo: ['CustomerService', function(CustomerService) {
+                        return CustomerService.getCustomerInfo();
+                    }]
+                }
+            })
 
         ;
     }
