@@ -1,0 +1,38 @@
+<div class="container">
+    <form name='signUpForm' novalidate>
+        <input type="text" name="firstName" placeholder="First name" ng-model="signUpCtrl.firstName" required>
+        <span ng-if="(signUpForm.firstName.$error.required) && signUpForm.firstName.$touched">
+                First name is required
+        </span>
+        <br>
+
+        <input type="text" name="lastName" placeholder="Last name" ng-model="signUpCtrl.lastName" required>
+        <span ng-if="(signUpForm.lastName.$error.required) && signUpForm.lastName.$touched">
+                Last name is required
+        </span>
+        <br>
+
+        <input type="email" name="emailAddress" placeholder="Email" ng-model="signUpCtrl.emailAddress" required>
+        <span ng-if="(signUpForm.emailAddress.$error.required || signUpForm.emailAddress.$invalid) && signUpForm.emailAddress.$touched">
+                Must be a valid email address: handle@domain format
+        </span>
+        <br>
+
+        <input type="text" name="phoneNumber" placeholder="Phone number" ng-model="signUpCtrl.phoneNumber" pattern="(\d{3})-(\d{3})-(\d{4})" required>
+        <span ng-if="(signUpForm.phoneNumber.$error.required || signUpForm.phoneNumber.$invalid) && signUpForm.phoneNumber.$touched">
+                Phone must be in the format ###-###-####.
+        </span>
+        <br>
+
+        <input type="text" name="favDish" placeholder="Favorite dish" ng-model="signUpCtrl.favDish">
+        <span ng-if="signUpCtrl.favDishError">{{signUpCtrl.favDishError}}</span>
+        <br>
+
+        <button ng-disabled="signUpForm.$invalid" ng-click="signUpCtrl.saveInfo()" class="form-submit">Save</button>
+
+    </form>
+
+    <div ng-if="signUpCtrl.saveMsg">{{signUpCtrl.saveMsg}}</div>
+
+
+</div>
