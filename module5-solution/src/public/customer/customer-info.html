@@ -1,9 +1,32 @@
 <div class="container">
     <h2>Customer Info</h2>
 
-    {{customerInfoCtrl.customerInfo}}
-
     <a ui-sref="public.signUp" ng-if="!customerInfoCtrl.customerInfo">Not Signed Up Yet. Sign up Now!</a>
+
+    <div ng-if="customerInfoCtrl.customerInfo">
+        <span class="info-label">First name</span>
+        <span class="info-value">{{customerInfoCtrl.customerInfo.firstName}}</span>
+        <br>
+
+        <span class="info-label">Last name</span>
+        <span class="info-value">{{customerInfoCtrl.customerInfo.lastName}}</span>
+        <br>
+
+        <span class="info-label">Email address</span>
+        <span class="info-value">{{customerInfoCtrl.customerInfo.emailAddress}}</span>
+        <br>
+
+        <span class="info-label">Phone number</span>
+        <span class="info-value">{{customerInfoCtrl.customerInfo.phoneNumber}}</span>
+        <br>
+
+        <span class="info-label">Favorite dish</span>
+        <span class="info-value">{{customerInfoCtrl.customerInfo.favDish}}</span>
+        <br>
+
+        <menu-item ng-if="customerInfoCtrl.menuItem" menu-item="customerInfoCtrl.menuItem">
+        </menu-item>
+    </div>
 
 
 

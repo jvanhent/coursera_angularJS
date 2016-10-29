@@ -8,6 +8,18 @@ input {
     color: #61122f;
 }
 
+.info-label {
+    min-width: 10%;
+    float: left;
+    text-align: left
+}
+
+.info-value {
+    min-width: 30%;
+    float: left;
+    margin-left: 15px;
+}
+
 
 /*
 button {
